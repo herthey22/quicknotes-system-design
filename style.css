@@ -1,0 +1,258 @@
+/* QuickNotes — Better Notes. Brighter Days. */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
+:root {
+    --ink: #202c60;
+    --muted: #7583ac;
+    --teal: #08b9c4;
+    --blue: #3588df;
+    --purple: #8957f5;
+    --surface: rgba(255, 255, 255, 0.84);
+    --line: #d8e3fb;
+    --success: #167d65;
+    --success-bg: #e5f8f1;
+    --error: #bd3859;
+    --error-bg: #fff0f3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: "DM Sans", sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(ellipse at 0% 0%, #c5f6f4 0, transparent 34%),
+        radial-gradient(ellipse at 100% 5%, #e3d5ff 0, transparent 34%),
+        linear-gradient(145deg, #f7faff, #edf6ff 55%, #f9f4ff);
+}
+
+.container {
+    width: min(100%, 1000px);
+    margin: 0 auto;
+}
+
+h1,
+h2 {
+    font-family: "Manrope", sans-serif;
+    letter-spacing: -0.7px;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    background: linear-gradient(100deg, #202c60, #078fac, #8055ee);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.container>p:not(#status) {
+    margin: 8px 0 26px;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+#status {
+    padding: 17px 20px;
+    margin: 0 0 20px;
+    border: 1px solid #c8e3fc;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--ink);
+    line-height: 1.6;
+}
+
+#status.success {
+    color: var(--success);
+    background: var(--success-bg);
+    border-color: #b9ebd9;
+}
+
+#status.error {
+    color: var(--error);
+    background: var(--error-bg);
+    border-color: #f5c6d2;
+}
+
+button {
+    border: 0;
+    border-radius: 13px;
+    padding: 13px 21px;
+    font: inherit;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(110deg, var(--teal), var(--blue), var(--purple));
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79, 104, 210, 0.22);
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(53, 136, 223, 0.35);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+#load-btn {
+    margin-bottom: 24px;
+}
+
+.form-section,
+.container>section {
+    padding: 25px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 23px;
+    background: var(--surface);
+    box-shadow: 0 12px 35px rgba(61, 96, 163, 0.07);
+    backdrop-filter: blur(12px);
+}
+
+h2 {
+    margin: 0 0 20px;
+    font-size: 1.4rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #c9d8f6;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--ink);
+    font: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #99a6c6;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+#submit-btn {
+    align-self: flex-start;
+    margin-top: 8px;
+    min-width: 150px;
+}
+
+#notes-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.note-card {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    background: white;
+    overflow-wrap: anywhere;
+}
+
+.note-card h3 {
+    margin: 0 0 10px;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.05rem;
+}
+
+.note-card p {
+    margin: 0 0 17px;
+    color: #647397;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.delete-btn {
+    padding: 9px 13px;
+    color: #b92f53;
+    background: #fff0f3;
+}
+
+.delete-btn:hover:not(:disabled) {
+    background: #ffe0e8;
+    box-shadow: none;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 35px 18px;
+    border: 1px dashed #c8d7f5;
+    border-radius: 17px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.7;
+}
+
+footer {
+    padding: 15px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 25px 14px;
+    }
+
+    .form-section,
+    .container>section {
+        padding: 19px;
+        border-radius: 18px;
+    }
+
+    #notes-list {
+        grid-template-columns: 1fr;
+    }
+
+    #submit-btn {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
